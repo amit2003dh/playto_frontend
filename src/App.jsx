@@ -38,8 +38,12 @@ function App() {
       fetchBalance()
       fetchTransactions()
       fetchPayouts()
-      // Set up polling for payouts
-      const interval = setInterval(fetchPayouts, 3000)
+      // Set up polling for payouts, balance, and transactions
+      const interval = setInterval(() => {
+        fetchBalance()
+        fetchTransactions()
+        fetchPayouts()
+      }, 3000)
       return () => clearInterval(interval)
     }
   }, [selectedMerchant])
